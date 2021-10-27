@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="table_heading">
+    <h1>Engines Matched with Aircraft and Squadron</h1>
+</div>
+  <div class="second-container">
+    <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Engine ID</th>
+        <th scope="col">Squadron ID</th>
+        <th scope="col">Aircraft ID</th>
+        <th scope="col">Type Model Series</th>
+        <th scope="col">Position</th>
+        <th scope="col">Engine Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for row in data %}
+      <tr>
+        <th scope="row"> {{row.engine_id}} </th>
+          <td>{{row.squadron_id}}</td>
+          <td>{{row.aircraft_id}}</td>
+          <td>{{row.t_m_s}}</td>
+          <td>{{row.position}}</td>
+          <td>{{row.e_hours}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

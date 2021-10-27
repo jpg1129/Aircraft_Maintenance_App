@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div>
+    <h1 class="indexHeader">{% if current_user.is_authenticated %} Hello Pilot {{ current_user.username }}, Please Choose An Option:</h1> {%endif%}
+</div>
+<div class="container">
+    <div class="box box8"><a class="linker" href="{{ url_for('main.pilot_flights') }}">Pilot Flights</a></div>
+    <div class="box box9"><a class="linker" href="{{ url_for('main.flight_hours_per_squadron') }}">Total Flight Hours</a></div>
+    <div class="box box10"><a class="linker" href="{{ url_for('main.pilot_add_flight') }}">Add Flight</a></div>
+    <div class="box box11"><a class="linker" href="{{ url_for('main.flight_squadron_history') }}">Flight History</a></div>
+    <div class="box box6"><a class="linker" href="{{ url_for('main.pilot_list') }}">View Squadron</a></div>
+    <div class="box box5"><a class="linker" href="{{ url_for('main.canceled_squadron_flights') }}">Canceled Flights</a></div>
+  </div>
+{% endblock %}

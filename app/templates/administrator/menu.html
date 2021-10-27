@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div>
+    <h1 class="indexHeader">{% if current_user.is_authenticated %} Hello Administrator {{ current_user.username }}, Please Choose An Option:</h1> {%endif%}
+</div>
+<div class="container">
+    <div class="box box1"><a class="linker" href="{{ url_for('main.admin_get_all_flights') }}">View Aircraft</a></div>
+    <div class="box box2"><a class="linker" href="{{ url_for('main.admin_get_engines') }}">View Engines</a></div>
+    <div class="box box3"><a class="linker" href="{{ url_for('main.delete_user') }}">Delete User</a></div>
+    <div class="box box4"><a class="linker" href="{{ url_for('main.insert_user') }}">Insert User</a></div>
+    <div class="box box5"><a class="linker" href="{{ url_for('main.update_user') }}">Update User</a></div>
+    <div class="box box6"><a class="linker" href="{{ url_for('main.view_users') }}">View Users</a></div>
+</div>
+{% endblock %}

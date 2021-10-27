@@ -1,0 +1,146 @@
+h1.indexHeader{
+  text-align:center;
+}
+
+.nav-link {
+  font-size: 24px;
+}
+/* Some default styles to make each box visible */
+.box {
+  color:white;
+  font-size: 40px;
+  text-align: center;
+  text-shadow:4px 4px 0 rgba(0,0,0,0.1);
+  padding:10px;
+}
+
+.linker {
+  text-decoration: none;
+  color:white;
+  font-size: 40px;
+  text-align: center;
+  text-shadow:4px 4px 0 rgba(0,0,0,0.1);
+  padding:10px;
+}
+
+.linker:hover, .linker:active {
+    text-decoration: none;
+    color: #E0E0E0;
+}
+
+/* Colours for each box */
+.box1 { background:#1abc9c;}
+.box2 { background:#3498db;}
+.box3 { background:#9b59b6;}
+.box4 { background:#34495e;}
+.box5 { background:#f1c40f;}
+.box6 { background:#e67e22;}
+
+/* Boxes for pilot menu */
+.box8 { background:#1abc9c;}
+.box9 { background:#3498db;}
+.box10{ background:#9b59b6;}
+.box11{ background:#34495e;}
+
+/* We start writing out flexbox here. The above is just page setup */
+div.container {
+  margin: 0 auto;
+  display:flex;
+  /* border:10px solid mistyrose; */
+  height:70vh;
+  flex-wrap:wrap;
+  flex-direction:column;
+}
+
+.box {
+  flex-basis:33.333%;
+}
+
+div.second-container {
+  margin-top: 50px;
+  text-align: center;
+}
+
+div.second-container table {
+  width: 50%;
+  margin: auto;
+  float: none;;
+}
+
+div.table_heading {
+  text-align: center
+}
+
+.main-container {
+  margin: auto;
+}
+
+img {
+  width: 100%
+}
+
+.big-container {
+  font-family:'Open-sans', sans-serif;
+  font-size:17px;
+  line-height:1.5em;
+  margin:0;
+  padding:0;
+}
+
+/* COMMON CLASSES */
+.primary-text{
+  color:#A0A4B8;
+}
+
+.primary-background{
+  background:#56a79a;
+}
+
+/* SHOWCASE */
+#showcase{
+  background:url('./images/showcase.jpg') no-repeat center center;
+  border-bottom:1px solid #56a79a;
+  margin-bottom:30px;
+}
+
+#showcase .row{
+  height:70vh;
+}
+
+#showcase h1{
+  font-size:50px;
+  margin:0;
+  padding-bottom:20px;
+}
+
+#showcase p{
+  color:#ccc;
+  margin:0;
+}
+
+#showcase .showcase-content{
+  background:#333;
+  color:#fff;
+  border-radius:90px;
+  padding:40px;
+  opacity:0.9;
+}
+
+
+/* FEATURES */
+#features h2{
+  font-size:35px;
+  margin:0;
+  padding-bottom:10px;
+}
+
+#features p{
+  color:#888;
+  margin:0;
+  margin-bottom:40px;
+}
+
+#features .fa{
+  font-size:60px;
+  color:#56a79a;
+}

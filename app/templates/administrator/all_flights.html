@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="table_heading">
+    <h1>All Aircraft Flight Information </h1>
+</div>
+  <div class="second-container">
+    <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Flight ID</th>
+        <th scope="col">Pilot ID</th>
+        <th scope="col">Aircraft ID</th>
+        <th scope="col">Flight Hours</th>
+        <th scope="col">Flight Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for flight in data %}
+      <tr>
+        <th scope="row"> {{flight.flight_id}} </th>
+        <td>{{flight.pilot_id}}</td>
+        <td>{{flight.aircraft_id}}</td>
+        <td>{{flight.hours}}</td>
+        <td>{{flight.flight_date}}</td>
+        {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

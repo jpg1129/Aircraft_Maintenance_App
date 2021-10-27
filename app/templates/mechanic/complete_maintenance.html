@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div>
+    <h1 class="indexHeader">Complete Maintenance</h1>
+</div>
+<form method="post">
+  <div class="container">
+    <div class="form-group">
+      <label for="Job ID"><strong>Job ID</strong></label>
+      <select class="form-control" name="job_id">
+        {% for job in data %}
+          <option>{{job.job_id}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  <div class="form-group">
+    <label for="description select"><strong>Description</strong></label>
+    <select class="form-control" name="description">
+      {% for job in data %}
+        <option>{{job.description}}</option>
+      {% endfor %}
+   </select>
+ </div>
+  <div class="form-group">
+      <label for="date complete"><strong>Date Complete</strong></label>
+      <input name="date_complete" type="text" class="form-control" placeholder="YYYY-MM-DD">
+  </div>
+  <div class="form-group">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-outline-success">Enter</button>
+      <button type="submit" class="btn btn-outline-secondary">Clear</button>
+      <a class="btn btn-outline-warning" href={{ url_for('main.mechanic_menu')}} role="button">Back</a>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+Metadata-Version: 2.0
+Name: sqlalchemy-views
+Version: 0.2.1
+Summary: Adds CreateView and DropView constructs to SQLAlchemy
+Home-page: https://github.com/jklukas/sqlalchemy-views
+Author: Jeff Klukas
+Author-email: jeff@klukas.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: SQL
+Classifier: Topic :: Database
+Classifier: Topic :: Database :: Database Engines/Servers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: sqlalchemy (>=1.0.0)
+
+View Manipulation for SQLAlchemy
+================================
+
+Adds `CreateTable` and `DropView` constructs to SQLAlchemy.
+
+
+Usage
+-----
+
+Examples:
+
+    >>> from sqlalchemy import Table, MetaData
+    >>> from sqlalchemy.sql import text
+    >>> from sqlalchemy_views import CreateView, DropView
+
+    >>> view = Table('my_view', MetaData())
+    >>> definition = text("SELECT * FROM my_table")
+    >>> create_view = CreateView(view, definition)
+    >>> print(str(create_view.compile()).strip())
+    CREATE VIEW my_view AS SELECT * FROM my_table
+
+    >>> create_view = CreateView(view, definition, or_replace=True)
+    >>> print(str(create_view.compile()).strip())
+    CREATE OR REPLACE VIEW my_view AS SELECT * FROM my_table
+
+    >>> drop_view = DropView(view)
+    >>> print(str(drop_view.compile()).strip())
+    DROP VIEW my_view
+
+    >>> drop_view = DropView(view, if_exists=True, cascade=True)
+    >>> print(str(drop_view.compile()).strip())
+    DROP VIEW IF EXISTS my_view CASCADE
+
+Note that the SQLAlchemy ``Table`` object is used to represent
+both tables and views. To introspect a view, create a ``Table``
+with ``autoload=True``, and then use SQLAlchemy's
+``get_view_definition`` method to generate the second
+argument to ``CreateView``.
+
+
+Installation
+------------
+
+``sqlalchemy-views`` is available on PyPI and can be installed via ``pip`` ::
+
+    pip install sqalalchemy-views
+
+
+Limitations
+-----------
+
+Various SQL dialects have developed custom
+`CREATE VIEW` and `DROP VIEW` syntax.
+This project aims to provide the core set of functionality
+shared by most database engines.
+
+
+Acknowledgements
+----------------
+
+Some design ideas taken from the
+`SQLAlchemy Usage Recipe for views <https://bitbucket.org/zzzeek/sqlalchemy/wiki/UsageRecipes/Views>`_.
+
+Package structure is based on
+`python-project-template <https://github.com/seanfisk/python-project-template>`_.
+
+

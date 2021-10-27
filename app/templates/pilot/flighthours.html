@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="table_heading">
+    <h1>Total Flight Hours of Squadron </h1>
+</div>
+  <div class="second-container">
+    <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Total Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for flight in data %}
+      <tr>
+          <th scope="row"> {{flight.total_hours}} </th>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

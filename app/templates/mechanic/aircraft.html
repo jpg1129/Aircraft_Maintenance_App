@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="table_heading">
+    <h1>Aircraft Information By Squadron </h1>
+</div>
+  <div class="second-container">
+    <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Aircraft ID</th>
+        <th scope="col">Type Model Series</th>
+        <th scope="col">Squadron ID</th>
+        <th scope="col">Airframe Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for aircraft in result %}
+      <tr>
+        <th scope="row"> {{aircraft.aircraft_id}} </th>
+        <td>{{aircraft.t_m_s}}</td>
+        <td>{{aircraft.squadron_id}}</td>
+        <td>{{aircraft.airframe_hours}}</td>
+        {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

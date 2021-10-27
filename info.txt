@@ -1,0 +1,161 @@
+NEED TO FIX DATE
+
+start database gui - sqlite_web data-dev.sqlite
+
+
+@main.route('/mechanic/aircraft')
+def mechanic_get_aircraft():
+    result=[]
+    sql = "SELECT id, airframe_hours FROM aircrafts"
+    c = db.engine.connect()
+    for row in c.execute(sql):
+        result.append(row)
+    return render_template('mechanic/aircraft.html', result=result)
+
+
+
+    @main.route('/mechanic/aircraft')
+    def mechanic_get_aircraft():
+        result=[]
+        sql = "SELECT id, airframe_hours FROM aircrafts"
+        data = db.engine.execute(sql)
+        for row in data:
+            result.append(row)
+        return render_template('mechanic/aircraft.html', result=result)
+
+--------------------------------------------------------------------
+git clone
+git update
+
+-------------------------------------------------------------------
+
+from sqlalchemy import update
+>>> admin = User.query.filter_by(username='jpg').first()
+>>> admin.role_id=3
+>>> db.session.commit()
+
+"Could have also done it the way below."
+
+user = User.query.get(5)
+user.name = 'New Name'
+db.session.commit()
+-------------------------------------------------------------------
+
+class Employee(UserMixin, db.Model, Base):
+    __tablename__ = 'employee'
+    id = db.Column(db.Integer, primary_key=True)
+    usrename = db.Column(db.String(15))
+    password = db.Column(db.String(80))
+    type = db.Column(db.String(50))
+
+    __mapper_args__ = {
+        'polymorphic_identity' : 'employee',
+        'polymorphic_on': type
+    }
+
+    def __repr__(self):
+        return '< Employee %r>' % self.username
+
+'''
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+'''
+class Engineer(Employee):
+    __tablename__ = 'engineer'
+    id = db.Column(db.Integer, db.ForeignKey('employee.id'), primary_key=True)
+
+    __mapper_args__= {
+        'polymorphic_identity': 'engineer',
+    }
+
+
+class Manager(Employee):
+    __tablename__ = 'manager'
+    id = db.Column(db.Integer, db.ForeignKey('employee.id'), primary_key=True)
+
+    __mapper_args__={
+        'polymorphic_identity': 'manager',
+
+    }
+
+--------------ADD THESE IN THIS ORDER----------------------------------------------------
+    Squadron.insert_squadrons()
+    Aircraft.insert_aircrafts()
+    Mechanic.insert_mechanics()
+    Pilot.insert_pilots()
+    Engine.insert_engines()
+    Flight.insert_flights()
+    MaintenanceDue.insert_maintenanceDueData()
+
+
+
+
+---------------------------------------------------------------------------------
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">DataBaseProject</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+  </div>
+---------------------------------------------------------------------------------
+{% extends "base.html" %}
+{% block page_content %}
+<div>
+    <h1 class="indexHeader">Complete Maintenance</h1>
+</div>
+<form>
+  <div class="container">
+  <div class="form-group row">
+    <label for="validationServer01" class="col-sm-2 col-form-label">Job ID</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="00000000">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="validationServer02" class="col-sm-2 col-form-label">Date Complete</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="1/1/2017">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="validationServer03" class="col-sm-2 col-form-label">Woker ID</label>
+    <div class="col-sm-10">
+      <label for="validationServer03">Woker ID</label>
+      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="00000000" required>
+      <div class="invalid-feedback">
+        Please provide a valid Worker Identification number.
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-outline-success">Enter</button>
+      <button type="submit" class="btn btn-outline-secondary">Clear</button>
+      <a class="btn btn-outline-warning" href={{ url_for('main.mechanic_menu')}} role="button">Back</a>
+    </div>
+  </div>
+</form>
+</div>
+{% endblock %}

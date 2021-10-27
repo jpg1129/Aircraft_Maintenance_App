@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="table_heading">
+    <h1>All Users</h1>
+</div>
+  <div class="second-container">
+    <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Password Hash</th>
+        <th scope="col">Squadron ID</th>
+        <th scope="col">Job Type</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for person in data %}
+      <tr>
+        <th scope="row"> {{person.id}} </th>
+        <td>{{person.username}}</td>
+        <td>{{person.password_hash}}</td>
+        <td>{{person.squadron_id}}</td>
+        <td>{{person.type}}</td>
+        {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

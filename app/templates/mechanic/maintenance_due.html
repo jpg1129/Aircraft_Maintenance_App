@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="table_heading">
+    <h1>Maintenance Due</h1>
+</div>
+  <div class="second-container">
+    <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Job ID</th>
+        <th scope="col">Aircraft ID</th>
+        <th scope="col">Description</th>
+        <th scope="col">Type Inspection</th>
+        <th scope="col">Date Due</th>
+        <th scope="col">Hours Due</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for row in data %}
+      <tr>
+        <th scope="row"> {{row.job_id}} </th>
+        <td>{{row.aircraft_id}}</td>
+        <td>{{row.description}}</td>
+        <td>{{row.type_inspection}}</td>
+        <td>{{row.date_due}}</td>
+        <td>{{row.hours_due}}</td>
+
+        {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}
